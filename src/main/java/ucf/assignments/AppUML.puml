@@ -1,0 +1,35 @@
+@startuml
+class Controller
+{
+    private Label mainTitle;
+    private TextField inputTitle;
+    private TextField inputDescription;
+    private ChoiceBox inputStatus;
+    private DatePicker inputDuedate;
+    ArrayList<todoList> list;
+
+    newSavetodo()
+    openViewlist()
+    editTodo()
+    deleteTodo()
+    loadList()
+    saveList()
+    openAddtodo()
+    initialize()
+}
+class App
+{
+    start(Stage stage)
+    main(String[] args)
+}
+class todoList
+{
+    public int ID;
+    public String title;
+    public String description;
+    public String status;
+    public String dueDate;
+}
+
+
+@enduml

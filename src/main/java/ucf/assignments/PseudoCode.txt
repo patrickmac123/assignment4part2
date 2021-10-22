@@ -1,0 +1,78 @@
+/*
+ *  UCF COP3330 Fall 2021 Assignment 4 Solution
+ *  Copyright 2021 Patrick Mac
+ */
+
+class Controller
+{
+    Declares variables from the FXML file
+    Also declares a ArrayList used to store todoList objects
+
+newSavetodo()
+ {
+    This method is used when the save button is pressed
+    It stores the user input into the objects corresponding attributes
+    It also adds the object to the list
+    It will also delete the current contents in the text fields to allow for a new list
+ }
+
+openViewlist()
+{
+    This method is used when the viewTodolist tab is pressed
+}
+
+editTodo()
+{
+    This method is used when the user clicks on the edit button in the view list
+    It opens a new window to edit a specific todo task
+}
+
+deleteTodo()
+{
+    This method is called when the user wants to delete a specific task from the todoList
+    It also will refresh the list of todos
+}
+
+saveList()
+{
+    This method is used when the user clicks on the saveList button
+    The program then saves the current list to an external file
+}
+
+loadList()
+{
+    This method is used when the user clicks on the loadList button
+    The program then loads an external file that has todo tasks inside
+}
+
+openAddtodo()
+{
+    This method is called when the user clicks on the "Add Todo" button on the
+    view list window. This method opens up the addTodo.fxml file
+}
+
+initialize()
+{
+    This method is ran when the application starts
+    Initialize the list here
+    adds complete and incomplete to the status choice box
+}
+
+}
+
+class todoList
+{
+    This class stores the attributes for each todoList object
+}
+
+class App
+{
+start(Stage stage)
+    {
+    This function creates a window named "Todo Application" and loads the addTodo.fxml file
+    }
+main
+    {
+        this method is the main method and calls the launch() function to start the application
+    }
+}
