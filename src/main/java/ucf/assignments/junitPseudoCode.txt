@@ -1,0 +1,169 @@
+/*
+ *  UCF COP3330 Fall 2021 Assignment 4 Solution
+ *  Copyright 2021 Patrick Mac
+ */
+
+Class Controller
+{
+    @test #1
+    function listCheck
+    {
+        This function creates a list with 100 todoList objects
+        iterates through the list and changes the status of all to complete
+        tests if update has occured for all objects
+    }
+
+    @test #2
+    function titleCheck
+    {
+        Creates a todoList object with a title
+        tests if the title given to the object matches the manually entered title
+    }
+
+    @test #3
+    function listCapacity
+    {
+        This function creates a list with 100 todoList objects
+        tests if there are 100 objects in the list
+    }
+
+    @test #4
+    function checkDescription
+    {
+        Creates a todoList object with a description
+        tests if the description given to the object matches the manually entered description
+    }
+
+    @test #5
+    function dueDate
+    {
+        Creates a todoList object with a dueDate
+        tests if the dueDate given to the object matches the manually entered dueDate
+    }
+    
+    @test #6
+    function listAdd
+    {
+        Creates a todoList object with attributes and checks to see if the object is added to the list
+    }
+
+    @test #7
+    function listRemove
+    {
+        creates an object with attributes, adds it to the list and tests
+        It then removes the object from the list and then tests if the object is removed
+    }
+
+    @test #8
+    function listEdit
+    {
+        Creates a todoList object with variables
+        edits the list object and checks if the updated values are correct
+    }
+
+
+    @test #14
+    function displayLists
+    {
+        Creates a todoList object with variables and fills the a list of the objects
+        Tests if the .get() of each object equals a list
+    }
+
+    @test #15
+    function getIncompletedItem
+    {
+        Creates a todoList object and variables for each object
+        The list will have objects that are either incoplete and complete
+        It will then pull all objects from the list that have a status attribute of incomplete
+    }
+
+    @test #16
+    function getCompletedItem
+    {
+         Creates a todoList object and variables for each object
+        The list will have objects that are either incoplete and complete
+        It will then pull all objects from the list that have a status attribute of complete
+    }
+
+    @test #18
+    function saveAll
+    {
+        Creates a list of objects from todoList with unique attributes
+        It then creates a file and returns 1 if the file is created and the data is saved
+
+    }
+
+    @test #19
+    function loadList
+    {
+        Create a todoList object and calls the loadList function
+        Tests to See if the Controller's ArrayList is not empty
+    }
+
+    @test #20
+    function loadList
+    {
+        Create a todoList object and calls the loadList function
+        Tests to See if the Controller's ArrayList is not empty and the amount of items in the list matches
+        the amount that is in the file
+    }
+
+}
+
+Class ToDoList
+{
+    @test #9
+    function listItemAdd
+    {
+        Creates a todoList object with unique values and adds it to the list
+        Updates an item in the object (adds) and checks if the value matches a manually added item
+    }
+
+    @test #10
+    function listItemRemove
+    {
+        Creates a todoList object with unique values and adds it to the list
+        Updates an item in the object (removed) and checks if the value is removed from the object
+    }
+
+    @test #17
+    function saveList
+    {
+        Creates a todoList object with unique values and adds it to the list
+        Creates a File Object
+        Calls the saveList function with the file object
+        Test to see if the file is created and returns 1
+    }
+}
+
+Class todoList
+{
+    @test #11
+    function descriptionUpdate
+    {
+        Create a todoList object with unique variables
+        call the todoList object descriptionUpdate function
+        Updates the description in the object
+        tests to see if the updated object description is equal to the test string
+    }
+
+    @test #12
+    function dueDateUpdate
+    {
+        Create a todoList object with unique variables
+        call the todoList object dueDateUpdate function
+        Updates the dueDate in the object
+        tests to see if the updated object description is equal to the test string
+    }
+
+    @test #13
+    function statusCheck
+    {
+        Create an todoList object with unique variables
+        Updates the status in the object
+        Test to see if the object Complete boolean is true
+    }
+
+
+
+}
