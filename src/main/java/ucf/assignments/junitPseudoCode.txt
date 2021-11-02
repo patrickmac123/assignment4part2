@@ -109,8 +109,8 @@ Class Controller
     }
 
 }
-
-Class ToDoList
+   
+Class todoList
 {
     @test #9
     function listItemAdd
@@ -126,18 +126,6 @@ Class ToDoList
         Updates an item in the object (removed) and checks if the value is removed from the object
     }
 
-    @test #17
-    function saveList
-    {
-        Creates a todoList object with unique values and adds it to the list
-        Creates a File Object
-        Calls the saveList function with the file object
-        Test to see if the file is created and returns 1
-    }
-}
-
-Class todoList
-{
     @test #11
     function descriptionUpdate
     {
@@ -164,6 +152,13 @@ Class todoList
         Test to see if the object Complete boolean is true
     }
 
-
+    @test #17
+    function saveList
+    {
+        Creates a todoList object with unique values and adds it to the list
+        Creates a File Object
+        Calls the saveList function with the file object
+        Test to see if the file is created and returns 1
+    }
 
 }
