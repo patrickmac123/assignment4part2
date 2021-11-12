@@ -51,6 +51,9 @@ public class Controller
     private TableView<todoList> myTable;
 
     @FXML
+    private TableColumn<todoList, String> idCol;
+
+    @FXML
     private TableColumn<todoList, String> taskCol;
 
     @FXML
@@ -62,7 +65,7 @@ public class Controller
     @FXML
     private TableColumn<todoList, String> statusCol;
 
-
+    public int ID = 0;
 
 
     ArrayList<todoList> list;
@@ -74,11 +77,22 @@ public class Controller
         System.out.println(list.get(0).getDescription());
         System.out.println(list.get(0).getDueDate());
         System.out.println(list.get(0).getStatus());
+        System.out.println("");
+        System.out.println(list.get(1).getTitle());
+        System.out.println(list.get(1).getDescription());
+        System.out.println(list.get(1).getDueDate());
+        System.out.println(list.get(1).getStatus());
+        System.out.println("");
+        System.out.println(list.get(2).getTitle());
+        System.out.println(list.get(2).getDescription());
+        System.out.println(list.get(2).getDueDate());
+        System.out.println(list.get(2).getStatus());
     }
     @FXML
     protected void newSavetodo()
     {
-        todoList obj = new todoList(inputTitle.getText(),inputDescription.getText(),(String)inputStatus.getValue(),inputDuedate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        todoList obj = new todoList(ID,inputTitle.getText(),inputDescription.getText(),(String)inputStatus.getValue(),inputDuedate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        ID++;
 
         if (inputDescription.getText().length() >= 1 && inputDescription.getText().length() <= 256)
         {
@@ -86,6 +100,7 @@ public class Controller
             //obj.description = inputDescription.getText();
             //obj.status = (String) inputStatus.getValue();
             //obj.dueDate = inputDuedate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
             list.add(obj);
             inputTitle.clear();
             inputDescription.clear();
@@ -149,7 +164,7 @@ public class Controller
         inputStatus.getItems().add("Complete");
         inputStatus.getItems().add("Incomplete");
 
-
+        idCol.setCellValueFactory(new PropertyValueFactory<todoList,String>("ID"));
 
         taskCol.setCellValueFactory(new PropertyValueFactory<todoList,String>("title"));
         taskCol.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -164,8 +179,6 @@ public class Controller
         statusCol.setCellFactory(TextFieldTableCell.forTableColumn());
 
         myTable.setEditable(true);
-
-
 
     }
 
@@ -198,5 +211,16 @@ public class Controller
     {
         list.clear();
         myTable.getItems().setAll(list);
+    }
+
+    public void removeItem(ActionEvent actionEvent)
+    {
+        int rowNum = myTable.getSelectionModel().getSelectedIndex();
+        myTable.getItems().removeAll(myTable.getSelectionModel().getSelectedItem());
+        int counter = rowNum;
+        list.remove(counter);
+        //myTable.getSelectionModel().getSelectedItem();
+       // TableRow row = myTable.getItems().removeAll(myTable.getSelectionModel().getSelectedItem().cell.getTableRow();
+
     }
 }

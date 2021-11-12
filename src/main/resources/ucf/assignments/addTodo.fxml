@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane prefHeight="780.0" prefWidth="947.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.Controller">
+<Pane prefHeight="846.0" prefWidth="947.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.Controller">
    <children>
       <MenuBar prefHeight="25.0" prefWidth="947.0">
         <menus>
@@ -43,14 +43,16 @@
             <ChoiceBox fx:id="inputStatus" prefWidth="150.0" />
             <Button fx:id="newSave" mnemonicParsing="false" onAction="#newSavetodo" text="Add" />
             <Text fx:id="errorMsg" fill="#ee0000" layoutX="384.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <Button fx:id="showList" layoutX="465.0" layoutY="270.0" mnemonicParsing="false" onAction="#showObjects" text="SHOW" />
+            <Button fx:id="remove" layoutX="465.0" layoutY="270.0" mnemonicParsing="false" onAction="#removeItem" text="Remove Selected Task" />
+            <Button fx:id="showList1" layoutX="458.0" layoutY="351.0" mnemonicParsing="false" onAction="#showObjects" text="SHOW" />
          </children>
       </VBox>
       <VBox layoutY="25.0" prefHeight="384.0" prefWidth="947.0">
          <children>
             <TableView fx:id="myTable" prefHeight="384.0" prefWidth="947.0">
               <columns>
-                <TableColumn fx:id="taskCol" onEditCommit="#editTask" prefWidth="143.0" text="Task" />
+                  <TableColumn fx:id="idCol" prefWidth="48.0" text="ID" />
+                <TableColumn fx:id="taskCol" onEditCommit="#editTask" prefWidth="170.0" text="Task" />
                 <TableColumn fx:id="descriptionCol" onEditCommit="#editDescription" prefWidth="531.0" text="Description" />
                   <TableColumn fx:id="deadlineCol" onEditCommit="#editDeadline" prefWidth="140.0" text="Deadline" />
                   <TableColumn fx:id="statusCol" onEditCommit="#editStatus" prefWidth="132.0" text="Status" />
