@@ -10,7 +10,6 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
    <children>
-      <Button mnemonicParsing="false" text="Add Todo" />
       <Text layoutX="94.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of Todos">
          <font>
             <Font size="30.0" />
@@ -59,5 +58,6 @@
             </Text>
          </children>
       </GridPane>
+      <Button mnemonicParsing="false" text="Add Todo" />
    </children>
 </VBox>

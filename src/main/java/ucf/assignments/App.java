@@ -8,6 +8,7 @@ package ucf.assignments;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,10 +19,13 @@ public class App extends Application {
     {
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("addTodo.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load(), 947, 943);
         stage.setTitle("Todo Application");
         stage.setScene(scene);
         stage.show();
+
+
+
 
 
     }

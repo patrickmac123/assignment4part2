@@ -5,12 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.Controller">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
+<Pane prefHeight="780.0" prefWidth="947.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.Controller">
    <children>
-      <MenuBar prefHeight="18.0" prefWidth="105.0">
+      <MenuBar prefHeight="25.0" prefWidth="947.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -24,23 +21,37 @@
             </items>
           </Menu>
         </menus>
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
       </MenuBar>
-      <Text layoutX="94.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add New Todo">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title" />
-      <TextField fx:id="inputTitle" prefWidth="149.0" />
-      <Text layoutX="93.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
-      <TextField fx:id="inputDescription" layoutX="30.0" layoutY="66.0" prefWidth="149.0" />
-      <Text layoutX="94.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Due Date" />
-      <DatePicker fx:id="inputDuedate" />
-      <Text layoutX="114.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" />
-      <ChoiceBox fx:id="inputStatus" prefWidth="150.0" />
-      <Button fx:id="newSave" mnemonicParsing="false" onAction="#newSavetodo" text="Save" />
+      <VBox alignment="CENTER" layoutY="409.0" prefHeight="295.0" prefWidth="947.0" spacing="20.0">
+          <padding>
+              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+          </padding>
+         <children>
+            <Text layoutX="94.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add New Todo">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Text>
+            <TextField fx:id="inputTitle" prefHeight="25.0" promptText="Enter Task" />
+            <TextField fx:id="inputDescription" layoutX="30.0" layoutY="66.0" prefWidth="149.0" promptText="Enter Description" />
+            <DatePicker fx:id="inputDuedate" promptText="Deadline" />
+            <ChoiceBox fx:id="inputStatus" prefWidth="150.0" />
+            <Button fx:id="newSave" mnemonicParsing="false" onAction="#newSavetodo" text="Add" />
+            <Text fx:id="errorMsg" fill="#ee0000" layoutX="384.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Button fx:id="showList" layoutX="465.0" layoutY="270.0" mnemonicParsing="false" onAction="#showObjects" text="SHOW" />
+         </children>
+      </VBox>
+      <VBox layoutY="25.0" prefHeight="384.0" prefWidth="947.0">
+         <children>
+            <TableView fx:id="myTable" prefHeight="384.0" prefWidth="947.0">
+              <columns>
+                <TableColumn fx:id="taskCol" onEditCommit="#editTask" prefWidth="143.0" text="Task" />
+                <TableColumn fx:id="descriptionCol" onEditCommit="#editDescription" prefWidth="531.0" text="Description" />
+                  <TableColumn fx:id="deadlineCol" onEditCommit="#editDeadline" prefWidth="140.0" text="Deadline" />
+                  <TableColumn fx:id="statusCol" onEditCommit="#editStatus" prefWidth="132.0" text="Status" />
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
    </children>
-</VBox>
+</Pane>
