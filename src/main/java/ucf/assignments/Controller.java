@@ -193,4 +193,10 @@ public class Controller
         todoList status = myTable.getSelectionModel().getSelectedItem();
         status.setStatus(todoListStringCellEditEvent.getNewValue());
     }
+
+    public void clearList(ActionEvent actionEvent)
+    {
+        list.clear();
+        myTable.getItems().setAll(list);
+    }
 }
