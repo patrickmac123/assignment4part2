@@ -8,17 +8,22 @@ package ucf.assignments;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.converter.DefaultStringConverter;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
@@ -71,6 +76,24 @@ public class Controller
     ArrayList<todoList> list;
 
     @FXML
+    private TableView<todoList> sorted;
+
+    @FXML
+    private TableColumn<todoList, String> sortedTask;
+
+    @FXML
+    private TableColumn<todoList, String> sortedDescription;
+
+    @FXML
+    private TableColumn<todoList, String> sortedDueDate;
+
+    @FXML
+    private TableColumn<todoList, String> sortedStatus;
+
+    @FXML
+    private CheckBox selectCol;
+
+    @FXML
     protected void showObjects()
     {
         System.out.println(list.get(0).getTitle());
@@ -87,6 +110,8 @@ public class Controller
         System.out.println(list.get(2).getDescription());
         System.out.println(list.get(2).getDueDate());
         System.out.println(list.get(2).getStatus());
+
+
     }
     @FXML
     protected void newSavetodo()
@@ -158,11 +183,17 @@ public class Controller
 
     }
 
+    public ObservableList<String> statusChoices;
+
     public void initialize()
     {
         list = new ArrayList<>();
         inputStatus.getItems().add("Complete");
         inputStatus.getItems().add("Incomplete");
+
+        statusChoices = FXCollections.observableArrayList();
+        statusChoices.add("Complete");
+        statusChoices.add("Incomplete");
 
         idCol.setCellValueFactory(new PropertyValueFactory<todoList,String>("ID"));
 
@@ -176,10 +207,22 @@ public class Controller
         deadlineCol.setCellFactory(TextFieldTableCell.forTableColumn());
 
         statusCol.setCellValueFactory(new PropertyValueFactory<todoList,String>("status"));
-        statusCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        statusCol.setCellFactory(ComboBoxTableCell.forTableColumn(new DefaultStringConverter(),statusChoices));
+        statusCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<todoList, String>>()
+        {
+            @Override
+            public void handle(TableColumn.CellEditEvent<todoList, String> event)
+            {
+
+                list.get(event.getRowValue().ID).setStatus(event.getNewValue());
+            }
+        });
+
+        //selectCol.setCellValueFactory(new PropertyValueFactory<todoList,String>("select"));
+
 
         myTable.setEditable(true);
-
+        myTable.refresh();
     }
 
 
@@ -205,6 +248,7 @@ public class Controller
     {
         todoList status = myTable.getSelectionModel().getSelectedItem();
         status.setStatus(todoListStringCellEditEvent.getNewValue());
+        System.out.println("test");
     }
 
     public void clearList(ActionEvent actionEvent)
@@ -221,6 +265,54 @@ public class Controller
         list.remove(counter);
         //myTable.getSelectionModel().getSelectedItem();
        // TableRow row = myTable.getItems().removeAll(myTable.getSelectionModel().getSelectedItem().cell.getTableRow();
+
+    }
+
+
+    public void showCompleted(ActionEvent actionEvent) throws IOException {
+
+
+            ArrayList<todoList> sortedList;
+            sortedList = new ArrayList<>();
+            sortedList.clear();
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/ucf/assignments/editTodo.fxml"));
+            /*
+             * if "fx:controller" is not set in fxml
+             * fxmlLoader.setController(NewWindowController);
+             */
+            Scene scene = new Scene(fxmlLoader.load(), 630, 400);
+            Stage stage = new Stage();
+            stage.setTitle("Completed Tasks");
+            stage.setScene(scene);
+            stage.show();
+
+        sortedTask.setCellValueFactory(new PropertyValueFactory<todoList,String>("title"));
+        sortedDescription.setCellValueFactory(new PropertyValueFactory<todoList,String>("description"));
+        sortedDueDate.setCellValueFactory(new PropertyValueFactory<todoList,String>("dueDate"));
+        sortedStatus.setCellValueFactory(new PropertyValueFactory<todoList,String>("status"));
+
+        for (todoList obj: list)
+        {
+            if (obj.status.getValue().equals("Completed"))
+            {
+                sortedList.add(obj);
+            }
+        }
+        System.out.println(sortedList.get(0).getTitle());
+        System.out.println(sortedList.get(0).getDescription());
+        System.out.println(sortedList.get(0).getDueDate());
+        System.out.println(sortedList.get(0).getStatus());
+        sorted.getItems().setAll(sortedList);
+
+        System.out.println(sortedList.get(0).getTitle());
+        System.out.println(sortedList.get(0).getDescription());
+        System.out.println(sortedList.get(0).getDueDate());
+        System.out.println(sortedList.get(0).getStatus());
+
+    }
+
+    public void showIncompleted(ActionEvent actionEvent)
+    {
 
     }
 }

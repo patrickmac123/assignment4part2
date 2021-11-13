@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane prefHeight="846.0" prefWidth="947.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.Controller">
+<Pane prefHeight="469.0" prefWidth="947.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.Controller">
    <children>
       <MenuBar prefHeight="25.0" prefWidth="947.0">
         <menus>
@@ -25,14 +25,20 @@
               <MenuItem mnemonicParsing="false" text="View List" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Filter">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#showCompleted" text="Show Only Completed Tasks" />
+                  <MenuItem mnemonicParsing="false" onAction="#showIncompleted" text="Show Only Incompleted Tasks" />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
-      <VBox alignment="CENTER" layoutY="409.0" prefHeight="295.0" prefWidth="947.0" spacing="20.0">
+      <VBox alignment="CENTER" layoutX="695.0" layoutY="25.0" prefHeight="421.0" prefWidth="252.0" spacing="20.0">
           <padding>
               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
           </padding>
          <children>
-            <Text layoutX="94.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add New Todo">
+            <Text layoutX="94.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Todo List">
                <font>
                   <Font size="30.0" />
                </font>
@@ -47,15 +53,15 @@
             <Button fx:id="showList1" layoutX="458.0" layoutY="351.0" mnemonicParsing="false" onAction="#showObjects" text="SHOW" />
          </children>
       </VBox>
-      <VBox layoutY="25.0" prefHeight="384.0" prefWidth="947.0">
+      <VBox layoutY="25.0" prefHeight="431.0" prefWidth="704.0">
          <children>
-            <TableView fx:id="myTable" prefHeight="384.0" prefWidth="947.0">
+            <TableView fx:id="myTable" prefHeight="434.0" prefWidth="466.0">
               <columns>
-                  <TableColumn fx:id="idCol" prefWidth="48.0" text="ID" />
-                <TableColumn fx:id="taskCol" onEditCommit="#editTask" prefWidth="170.0" text="Task" />
-                <TableColumn fx:id="descriptionCol" onEditCommit="#editDescription" prefWidth="531.0" text="Description" />
-                  <TableColumn fx:id="deadlineCol" onEditCommit="#editDeadline" prefWidth="140.0" text="Deadline" />
-                  <TableColumn fx:id="statusCol" onEditCommit="#editStatus" prefWidth="132.0" text="Status" />
+                  <TableColumn fx:id="idCol" prefWidth="31.0" text="ID" />
+                <TableColumn fx:id="taskCol" onEditCommit="#editTask" prefWidth="121.0" text="Task" />
+                <TableColumn fx:id="descriptionCol" minWidth="0.0" onEditCommit="#editDescription" prefWidth="290.0" text="Description" />
+                  <TableColumn fx:id="deadlineCol" minWidth="0.0" onEditCommit="#editDeadline" prefWidth="99.0" text="Due Date" />
+                  <TableColumn fx:id="statusCol" prefWidth="162.0" text="Status" />
               </columns>
             </TableView>
          </children>

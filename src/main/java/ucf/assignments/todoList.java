@@ -2,6 +2,7 @@ package ucf.assignments;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.control.CheckBox;
 
 public class todoList
 {
@@ -13,6 +14,8 @@ public class todoList
     public StringProperty status;
     public StringProperty dueDate;
 
+
+
     todoList(int ID2, String title2, String description2, String status2, String dueDate2)
     {
         this.ID = ID2;
@@ -20,6 +23,7 @@ public class todoList
         this.description = new SimpleStringProperty(description2);
         this.status = new SimpleStringProperty(status2);
         this.dueDate = new SimpleStringProperty(dueDate2);
+
     }
 
     public int getID() {
@@ -61,6 +65,7 @@ public class todoList
     {
         dueDate.set(dueDate2);
     }
+
 
 
 }
