@@ -27,6 +27,7 @@
           </Menu>
             <Menu mnemonicParsing="false" text="Filter">
               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#showAll" text="Show All" />
                 <MenuItem mnemonicParsing="false" onAction="#showCompleted" text="Show Only Completed Tasks" />
                   <MenuItem mnemonicParsing="false" onAction="#showIncompleted" text="Show Only Incompleted Tasks" />
               </items>

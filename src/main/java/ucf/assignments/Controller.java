@@ -275,44 +275,41 @@ public class Controller
             ArrayList<todoList> sortedList;
             sortedList = new ArrayList<>();
             sortedList.clear();
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/ucf/assignments/editTodo.fxml"));
-            /*
-             * if "fx:controller" is not set in fxml
-             * fxmlLoader.setController(NewWindowController);
-             */
-            Scene scene = new Scene(fxmlLoader.load(), 630, 400);
-            Stage stage = new Stage();
-            stage.setTitle("Completed Tasks");
-            stage.setScene(scene);
-            stage.show();
 
-        sortedTask.setCellValueFactory(new PropertyValueFactory<todoList,String>("title"));
-        sortedDescription.setCellValueFactory(new PropertyValueFactory<todoList,String>("description"));
-        sortedDueDate.setCellValueFactory(new PropertyValueFactory<todoList,String>("dueDate"));
-        sortedStatus.setCellValueFactory(new PropertyValueFactory<todoList,String>("status"));
-
-        for (todoList obj: list)
+        for (int i = 0;i<list.size(); i++)
         {
-            if (obj.status.getValue().equals("Completed"))
+            if(list.get(i).getStatus().equals("Complete"))
             {
-                sortedList.add(obj);
+                sortedList.add(list.get(i));
             }
         }
-        System.out.println(sortedList.get(0).getTitle());
-        System.out.println(sortedList.get(0).getDescription());
-        System.out.println(sortedList.get(0).getDueDate());
-        System.out.println(sortedList.get(0).getStatus());
-        sorted.getItems().setAll(sortedList);
 
-        System.out.println(sortedList.get(0).getTitle());
-        System.out.println(sortedList.get(0).getDescription());
-        System.out.println(sortedList.get(0).getDueDate());
-        System.out.println(sortedList.get(0).getStatus());
+        myTable.getItems().setAll(sortedList);
+        myTable.refresh();
 
     }
 
     public void showIncompleted(ActionEvent actionEvent)
     {
+        ArrayList<todoList> sortedList;
+        sortedList = new ArrayList<>();
+        sortedList.clear();
 
+        for (int i = 0;i<list.size(); i++)
+        {
+            if(list.get(i).getStatus().equals("Incomplete"))
+            {
+                sortedList.add(list.get(i));
+            }
+        }
+
+        myTable.getItems().setAll(sortedList);
+        myTable.refresh();
+    }
+
+    public void showAll(ActionEvent actionEvent)
+    {
+        myTable.getItems().setAll(list);
+        myTable.refresh();
     }
 }
