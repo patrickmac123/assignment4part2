@@ -9,17 +9,15 @@ public class todoList
 
 
     public int ID;
-    public StringProperty title;
     public StringProperty description;
     public StringProperty status;
     public StringProperty dueDate;
 
 
 
-    todoList(int ID2, String title2, String description2, String status2, String dueDate2)
+    todoList(int ID2, String description2, String status2, String dueDate2)
     {
         this.ID = ID2;
-        this.title = new SimpleStringProperty(title2);
         this.description = new SimpleStringProperty(description2);
         this.status = new SimpleStringProperty(status2);
         this.dueDate = new SimpleStringProperty(dueDate2);
@@ -32,14 +30,6 @@ public class todoList
 
     public void setID(int ID) {
         this.ID = ID;
-    }
-    public String getTitle()
-    {
-        return title.get();
-    }
-    public void setTitle(String title2)
-    {
-        title.set(title2);
     }
     public String getDescription()
     {

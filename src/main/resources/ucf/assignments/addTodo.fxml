@@ -11,8 +11,8 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Import List" />
-                  <MenuItem mnemonicParsing="false" text="Export List" />
+              <MenuItem mnemonicParsing="false" onAction="#importList" text="Import List" />
+                  <MenuItem mnemonicParsing="false" onAction="#exportList" text="Export List" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Edit">
@@ -20,11 +20,6 @@
                   <MenuItem mnemonicParsing="false" onAction="#clearList" text="Clear List" />
                </items>
             </Menu>
-          <Menu mnemonicParsing="false" text="View">
-            <items>
-              <MenuItem mnemonicParsing="false" text="View List" />
-            </items>
-          </Menu>
             <Menu mnemonicParsing="false" text="Filter">
               <items>
                   <MenuItem mnemonicParsing="false" onAction="#showAll" text="Show All" />
@@ -44,14 +39,12 @@
                   <Font size="30.0" />
                </font>
             </Text>
-            <TextField fx:id="inputTitle" prefHeight="25.0" promptText="Enter Task" />
             <TextField fx:id="inputDescription" layoutX="30.0" layoutY="66.0" prefWidth="149.0" promptText="Enter Description" />
             <DatePicker fx:id="inputDuedate" promptText="Deadline" />
             <ChoiceBox fx:id="inputStatus" prefWidth="150.0" />
             <Button fx:id="newSave" mnemonicParsing="false" onAction="#newSavetodo" text="Add" />
             <Text fx:id="errorMsg" fill="#ee0000" layoutX="384.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" />
             <Button fx:id="remove" layoutX="465.0" layoutY="270.0" mnemonicParsing="false" onAction="#removeItem" text="Remove Selected Task" />
-            <Button fx:id="showList1" layoutX="458.0" layoutY="351.0" mnemonicParsing="false" onAction="#showObjects" text="SHOW" />
          </children>
       </VBox>
       <VBox layoutY="25.0" prefHeight="431.0" prefWidth="704.0">
@@ -59,10 +52,9 @@
             <TableView fx:id="myTable" prefHeight="434.0" prefWidth="466.0">
               <columns>
                   <TableColumn fx:id="idCol" prefWidth="31.0" text="ID" />
-                <TableColumn fx:id="taskCol" onEditCommit="#editTask" prefWidth="121.0" text="Task" />
-                <TableColumn fx:id="descriptionCol" minWidth="0.0" onEditCommit="#editDescription" prefWidth="290.0" text="Description" />
-                  <TableColumn fx:id="deadlineCol" minWidth="0.0" onEditCommit="#editDeadline" prefWidth="99.0" text="Due Date" />
-                  <TableColumn fx:id="statusCol" prefWidth="162.0" text="Status" />
+                <TableColumn fx:id="descriptionCol" minWidth="0.0" onEditCommit="#editDescription" prefWidth="444.0" text="Description" />
+                  <TableColumn fx:id="deadlineCol" maxWidth="129.0" minWidth="0.0" onEditCommit="#editDeadline" prefWidth="127.0" resizable="false" text="Due Date" />
+                  <TableColumn fx:id="statusCol" prefWidth="101.0" resizable="false" text="Status" />
               </columns>
             </TableView>
          </children>

@@ -22,10 +22,18 @@ import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.converter.DefaultStringConverter;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.EventObject;
@@ -36,9 +44,6 @@ public class Controller
 
     @FXML
     private Label mainTitle;
-
-    @FXML
-    private TextField inputTitle;
 
     @FXML
     private Text errorMsg;
@@ -96,17 +101,14 @@ public class Controller
     @FXML
     protected void showObjects()
     {
-        System.out.println(list.get(0).getTitle());
         System.out.println(list.get(0).getDescription());
         System.out.println(list.get(0).getDueDate());
         System.out.println(list.get(0).getStatus());
         System.out.println("");
-        System.out.println(list.get(1).getTitle());
         System.out.println(list.get(1).getDescription());
         System.out.println(list.get(1).getDueDate());
         System.out.println(list.get(1).getStatus());
         System.out.println("");
-        System.out.println(list.get(2).getTitle());
         System.out.println(list.get(2).getDescription());
         System.out.println(list.get(2).getDueDate());
         System.out.println(list.get(2).getStatus());
@@ -116,7 +118,7 @@ public class Controller
     @FXML
     protected void newSavetodo()
     {
-        todoList obj = new todoList(ID,inputTitle.getText(),inputDescription.getText(),(String)inputStatus.getValue(),inputDuedate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        todoList obj = new todoList(ID,inputDescription.getText(),(String)inputStatus.getValue(),inputDuedate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         ID++;
 
         if (inputDescription.getText().length() >= 1 && inputDescription.getText().length() <= 256)
@@ -127,7 +129,6 @@ public class Controller
             //obj.dueDate = inputDuedate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
             list.add(obj);
-            inputTitle.clear();
             inputDescription.clear();
             errorMsg.setText("");
             inputStatus.valueProperty().set(null);
@@ -135,7 +136,6 @@ public class Controller
 
             myTable.getItems().setAll(list);
 
-            System.out.println(obj.title);
             System.out.println(obj.description);
             System.out.println(obj.status);
             System.out.println(obj.dueDate);
@@ -150,36 +150,75 @@ public class Controller
 
     }
 
-
-
-
     @FXML
-    protected void openViewlist(ActionEvent event) throws IOException
+    protected void importList()
     {
+        final Stage primaryStage = new Stage();
+        fileChooser.setTitle("Load Dialog");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("text File", "*.txt"));
+        File file = fileChooser.showOpenDialog(primaryStage);
 
+        List<String> lines;
+        try
+        {
+            lines = Files.readAllLines(Paths.get(String.valueOf(file)), StandardCharsets.US_ASCII);
+        }
+        catch (Exception ex) {
+            System.out.println("File not found.");
+            return;
+        }
+
+        todoList loadedList;
+        String line, description, status;
+        String dueDate;
+        for (int i = 0; i < lines.size(); i++)
+        {
+            line = lines.get(i);
+
+            description = line.substring(0, line.indexOf(";"));
+            line = line.substring(line.indexOf(";") + 1);
+
+            dueDate = line.substring(0, line.indexOf(";"));
+            line = line.substring(line.indexOf(";") + 1);
+
+            status = line;
+            loadedList = new todoList(list.size(), description, status,dueDate);
+            list.add(loadedList);
+        }
+        myTable.getItems().setAll(list);
+        myTable.refresh();
     }
 
     @FXML
-    protected void editTodo()
+    public void exportList(ActionEvent actionEvent)
     {
+        final Stage primaryStage = new Stage();
+        fileChooser.setTitle("Save Dialog");
+        fileChooser.setInitialFileName("List1");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("text File", "*.txt"));
+        File file = fileChooser.showSaveDialog(primaryStage);
+        String textFile = "";
+        for(int i = 0; i<list.size(); i++){
+            textFile += list.get(i).description.get();
+            textFile += ";";
 
-    }
+            textFile += list.get(i).dueDate.get();
+            textFile += ";";
 
-    @FXML
-    protected void deleteTodo()
-    {
+            textFile += list.get(i).status.get();
+            if (i != list.size() - 1)
+                textFile += "\n";
+        }
+        if (file != null) {
+            try {
+                PrintWriter writer;
+                writer = new PrintWriter(file);
+                writer.println(textFile);
+                writer.close();
+            } catch (IOException ex) {
 
-    }
-
-    @FXML
-    protected void loadList()
-    {
-
-    }
-
-    @FXML
-    protected void saveList()
-    {
+            }
+        }
 
     }
 
@@ -196,9 +235,6 @@ public class Controller
         statusChoices.add("Incomplete");
 
         idCol.setCellValueFactory(new PropertyValueFactory<todoList,String>("ID"));
-
-        taskCol.setCellValueFactory(new PropertyValueFactory<todoList,String>("title"));
-        taskCol.setCellFactory(TextFieldTableCell.forTableColumn());
 
         descriptionCol.setCellValueFactory(new PropertyValueFactory<todoList,String>("description"));
         descriptionCol.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -223,40 +259,37 @@ public class Controller
 
         myTable.setEditable(true);
         myTable.refresh();
+
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
     }
 
 
-    public void editTask(TableColumn.CellEditEvent<todoList, String> todoListStringCellEditEvent)
-    {
-        todoList task = myTable.getSelectionModel().getSelectedItem();
-        task.setTitle(todoListStringCellEditEvent.getNewValue());
-    }
-
+    @FXML
     public void editDescription(TableColumn.CellEditEvent<todoList, String> todoListStringCellEditEvent)
     {
         todoList description = myTable.getSelectionModel().getSelectedItem();
         description.setDescription(todoListStringCellEditEvent.getNewValue());
     }
-
+    @FXML
     public void editDeadline(TableColumn.CellEditEvent<todoList, String> todoListStringCellEditEvent)
     {
         todoList dueDate = myTable.getSelectionModel().getSelectedItem();
         dueDate.setDueDate(todoListStringCellEditEvent.getNewValue());
     }
-
+    @FXML
     public void editStatus(TableColumn.CellEditEvent<todoList, String> todoListStringCellEditEvent)
     {
         todoList status = myTable.getSelectionModel().getSelectedItem();
         status.setStatus(todoListStringCellEditEvent.getNewValue());
         System.out.println("test");
     }
-
+    @FXML
     public void clearList(ActionEvent actionEvent)
     {
         list.clear();
         myTable.getItems().setAll(list);
     }
-
+    @FXML
     public void removeItem(ActionEvent actionEvent)
     {
         int rowNum = myTable.getSelectionModel().getSelectedIndex();
@@ -268,7 +301,7 @@ public class Controller
 
     }
 
-
+    @FXML
     public void showCompleted(ActionEvent actionEvent) throws IOException {
 
 
@@ -288,7 +321,7 @@ public class Controller
         myTable.refresh();
 
     }
-
+    @FXML
     public void showIncompleted(ActionEvent actionEvent)
     {
         ArrayList<todoList> sortedList;
@@ -306,10 +339,26 @@ public class Controller
         myTable.getItems().setAll(sortedList);
         myTable.refresh();
     }
-
+    @FXML
     public void showAll(ActionEvent actionEvent)
     {
         myTable.getItems().setAll(list);
         myTable.refresh();
+    }
+
+    FileChooser fileChooser = new FileChooser();
+
+
+
+    @FXML
+    public void saveSystem(File file,String content)
+    {
+        try{
+            PrintWriter printWriter = new PrintWriter(file);
+            printWriter.write(content);
+            printWriter.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
