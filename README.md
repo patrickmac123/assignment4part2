@@ -1,9 +1,7 @@
 # TODO APPLICATION
 
-/*
-*  UCF COP3330 Fall 2021 Assignment 4 Solution
-*  Copyright 2021 Patrick Mac
-*/
+UCF COP3330 Fall 2021 Assignment 4 Solution
+Copyright 2021 Patrick Mac
  
 TODO LIST APPLICATION
  
