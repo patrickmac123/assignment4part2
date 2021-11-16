@@ -1,10 +1,8 @@
-# TODO APPLICATION
+# TODO LIST APPLICATION
 
 UCF COP3330 Fall 2021 Assignment 4
 
 Copyright 2021 Patrick Mac
- 
-TODO LIST APPLICATION
  
 This application is designed to store todo list items in a easy and digestable format
  
