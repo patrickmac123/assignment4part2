@@ -7,6 +7,7 @@ Copyright 2021 Patrick Mac
 This application is designed to store todo list items in a easy and digestable format
  
 ADDING TODO ITEMS
+
 To get started: 
 1) Enter in the description of the task
 2) Select a date to complete the task by
@@ -23,6 +24,7 @@ EDITING THE LIST
 3) To edit the status, click on the row and then the choice box that you want to edit, select a new status and the changes will apply
 
 IMPORTING A LIST
+
 To import a list
 1) Click on file and then import
 2) Select a text document with values that are in the correct format
@@ -30,16 +32,19 @@ To import a list
 EX: Assignment4Part2;2021-11-15;Complete
 
 EXPORTING A LIST
+
 TO export a list
 1) Click on file and then export
 2) Name the file and then click save
 
 CLEARING A LIST
+
 To clear the list
 1) Click on edit and then clear list
 The table should now be cleared
 
 FILTERING A LIST
+
 To filter the list
 1) Click on filter and then select whether you want to filter by
 Incomplete, Complete, or show all the items in the list
