@@ -1,6 +1,6 @@
 # TODO APPLICATION
 
-UCF COP3330 Fall 2021 Assignment 4 Solution
+UCF COP3330 Fall 2021 Assignment 4
 
 Copyright 2021 Patrick Mac
  
