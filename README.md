@@ -33,7 +33,7 @@ EX: Assignment4Part2;2021-11-15;Complete
 
 EXPORTING A LIST
 
-TO export a list
+To export a list
 1) Click on file and then export
 2) Name the file and then click save
 
