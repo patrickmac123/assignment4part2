@@ -11,53 +11,154 @@ class Controller
 newSavetodo()
  {
     This method is used when the save button is pressed
+    The method checks if input,status or due date is empty
+    if it is an error message is displayed
     It stores the user input into the objects corresponding attributes
     It also adds the object to the list
     It will also delete the current contents in the text fields to allow for a new list
  }
+
+ checkDate(String date)
+ {
+    This method helps newSavetodo() check the due date
+    The due date must be in the correct format and if it is
+    true is returned, otherwise false is.
+ }
+
+checkDescription(String desc)
+ {
+    This method helps newSavetodo() check the description.
+    The description must be between 1 and 256 characters.
+    if the description is within this range,
+    true is returned, otherwise false is.
+ }
+
+add(todoList obj)
+{
+    This method adds todoList objects to the list
+}
+
+importList()
+{
+    This method is called when the import button is pressed in the program
+    This method opens the file explorer to select a text document
+    that contains data to be used in the program
+    It also refreshes the table view
+}
+
+load()
+{
+    This method is used to load the file the was selected from importList()
+    The method removes the semicolons which are used to help differentiate each attribute
+    It then creates an object with said attributes and adds them to the list
+}
+
+exportList(ActionEvent actionEvent)
+{
+    This method is used to open the file explorer so the user can save
+    the todoList as a file
+}
+
+save()
+{
+    This method is used to save the todo objects into a text file
+    Description, Due Date, and Status are saved and seperated by a semicolon
+}
+
 
 openViewlist()
 {
     This method is used when the viewTodolist tab is pressed
 }
 
-editTodo()
-{
-    This method is used when the user clicks on the edit button in the view list
-    It opens a new window to edit a specific todo task
-}
-
-deleteTodo()
-{
-    This method is called when the user wants to delete a specific task from the todoList
-    It also will refresh the list of todos
-}
-
-saveList()
-{
-    This method is used when the user clicks on the saveList button
-    The program then saves the current list to an external file
-}
-
-loadList()
-{
-    This method is used when the user clicks on the loadList button
-    The program then loads an external file that has todo tasks inside
-}
-
-openAddtodo()
-{
-    This method is called when the user clicks on the "Add Todo" button on the
-    view list window. This method opens up the addTodo.fxml file
-}
-
 initialize()
 {
     This method is ran when the application starts
-    Initialize the list here
     adds complete and incomplete to the status choice box
+    adds complete and incomplete to the status choice box in the table
+    sets up the columns in the table and allows for them to be editble when clicking
 }
 
+handle()
+{
+    This method is used to help commit changes to the status choicebox cell
+}
+
+updateStatus(todoList row,String newValue)
+{
+    This method is used when updating the status of a cell in the table
+}
+
+editDescription(TableColumn.CellEditEvent<todoList, String> todoListStringCellEditEvent)
+{
+    This method is used when updating the description of a cell in the table
+    There is also a check to ensure the description is between 1 and 256 characters
+}
+
+updateDescription(todoList description,String newDescription)
+{
+    This method is used to set the new description of the cell in the table
+}
+
+editDeadline(TableColumn.CellEditEvent<todoList, String> todoListStringCellEditEvent)
+{
+    This method is used to set the new deadline of the cell in the table
+}
+
+clearList(ActionEvent actionEvent)
+{
+    This method is used when the clear all button is pressed
+    it calls the clearAll() method
+}
+
+clearAll()
+{
+    This method is used to clear the list of todo tasks
+}
+
+removeItem(ActionEvent actionEvent)
+{
+    This method is called when the remove item button is pressed
+    The removed item is updated in the table but not the database
+    There is a check to make sure that there is something selected
+    This method calls another method top remove items from the list
+}
+
+remove()
+{
+    This method is used to remove items from the list in the database
+}
+
+showCompleted(ActionEvent actionEvent)
+{
+    This method is used to show the completed items in the todolist
+    The method updates the table view
+}
+
+sortComplete()
+{
+    This method is used to sort through the status of the objects in the list
+    if the objects status is complete it is added to a sortedList which is returned
+    and sent to be displayed
+}
+
+showIncompleted(ActionEvent actionEvent)
+{
+    This method is used to show the incompleted items in the todolist
+    The method updates the table view
+}
+
+sortIncomplete()
+{
+    This method is used to sort through the status of the objects in the list
+    if the objects status is incomplete it is added to a sortedList which is returned
+    and sent to be displayed
+}
+
+showAll(ActionEvent actionEvent)
+{
+    This method is used when the show all button is pressed
+    this method calls the showList method and refreshes the table
 }
 
 class todoList

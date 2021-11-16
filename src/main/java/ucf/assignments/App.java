@@ -19,7 +19,7 @@ public class App extends Application {
     {
 
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("addTodo.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 947, 469);
+        Scene scene = new Scene(fxmlLoader.load(), 946, 469);
         stage.setTitle("Todo Application");
         stage.setScene(scene);
         stage.show();

@@ -7,57 +7,63 @@
 
 <Pane prefHeight="469.0" prefWidth="947.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.Controller">
    <children>
-      <MenuBar prefHeight="25.0" prefWidth="947.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" onAction="#importList" text="Import List" />
-                  <MenuItem mnemonicParsing="false" onAction="#exportList" text="Export List" />
-            </items>
-          </Menu>
-            <Menu mnemonicParsing="false" text="Edit">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#clearList" text="Clear List" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Filter">
-              <items>
-                  <MenuItem mnemonicParsing="false" onAction="#showAll" text="Show All" />
-                <MenuItem mnemonicParsing="false" onAction="#showCompleted" text="Show Only Completed Tasks" />
-                  <MenuItem mnemonicParsing="false" onAction="#showIncompleted" text="Show Only Incompleted Tasks" />
-              </items>
-            </Menu>
-        </menus>
-      </MenuBar>
-      <VBox alignment="CENTER" layoutX="695.0" layoutY="25.0" prefHeight="421.0" prefWidth="252.0" spacing="20.0">
-          <padding>
-              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-          </padding>
+      <HBox prefHeight="25.0" prefWidth="947.0">
          <children>
-            <Text layoutX="94.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Todo List">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Text>
-            <TextField fx:id="inputDescription" layoutX="30.0" layoutY="66.0" prefWidth="149.0" promptText="Enter Description" />
-            <DatePicker fx:id="inputDuedate" promptText="Deadline" />
-            <ChoiceBox fx:id="inputStatus" prefWidth="150.0" />
-            <Button fx:id="newSave" mnemonicParsing="false" onAction="#newSavetodo" text="Add" />
-            <Text fx:id="errorMsg" fill="#ee0000" layoutX="384.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <Button fx:id="remove" layoutX="465.0" layoutY="270.0" mnemonicParsing="false" onAction="#removeItem" text="Remove Selected Task" />
+            <MenuBar prefHeight="25.0" prefWidth="963.0" HBox.hgrow="ALWAYS">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#importList" text="Import List" />
+                        <MenuItem mnemonicParsing="false" onAction="#exportList" text="Export List" />
+                  </items>
+                </Menu>
+                  <Menu mnemonicParsing="false" text="Edit">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#clearList" text="Clear List" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Filter">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#showAll" text="Show All" />
+                      <MenuItem mnemonicParsing="false" onAction="#showCompleted" text="Show Only Completed Tasks" />
+                        <MenuItem mnemonicParsing="false" onAction="#showIncompleted" text="Show Only Incompleted Tasks" />
+                    </items>
+                  </Menu>
+              </menus>
+            </MenuBar>
          </children>
-      </VBox>
-      <VBox layoutY="25.0" prefHeight="431.0" prefWidth="704.0">
+      </HBox>
+      <HBox layoutY="24.0" prefHeight="445.0" prefWidth="947.0">
          <children>
-            <TableView fx:id="myTable" prefHeight="434.0" prefWidth="466.0">
-              <columns>
-                  <TableColumn fx:id="idCol" prefWidth="31.0" text="ID" />
-                <TableColumn fx:id="descriptionCol" minWidth="0.0" onEditCommit="#editDescription" prefWidth="444.0" text="Description" />
-                  <TableColumn fx:id="deadlineCol" maxWidth="129.0" minWidth="0.0" onEditCommit="#editDeadline" prefWidth="127.0" resizable="false" text="Due Date" />
-                  <TableColumn fx:id="statusCol" prefWidth="101.0" resizable="false" text="Status" />
-              </columns>
-            </TableView>
-         </children>
-      </VBox>
+            <VBox prefHeight="431.0" prefWidth="704.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <TableView fx:id="myTable" prefHeight="434.0" prefWidth="466.0">
+                    <columns>
+                      <TableColumn fx:id="descriptionCol" minWidth="0.0" onEditCommit="#editDescription" prefWidth="544.0" resizable="false" text="Description" />
+                        <TableColumn fx:id="deadlineCol" maxWidth="172.0" minWidth="0.0" onEditCommit="#editDeadline" prefWidth="106.0" resizable="false" text="Due Date" />
+                        <TableColumn fx:id="statusCol" prefWidth="67.0" resizable="false" text="Status" />
+                    </columns>
+                  </TableView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" spacing="20.0" HBox.hgrow="ALWAYS">
+                <padding>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                </padding>
+               <children>
+                  <Text layoutX="94.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Todo List">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="inputDescription" layoutX="30.0" layoutY="66.0" prefWidth="149.0" promptText="Enter Description" />
+                  <DatePicker fx:id="inputDueDate" promptText="Deadline" />
+                  <ChoiceBox fx:id="inputStatus" prefWidth="150.0" />
+                  <Button fx:id="newSave" mnemonicParsing="false" onAction="#newSavetodo" text="Add" />
+                  <Text fx:id="errorMsg" fill="#ee0000" layoutX="384.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                  <Button fx:id="remove" layoutX="465.0" layoutY="270.0" mnemonicParsing="false" onAction="#removeItem" text="Remove Selected Task" />
+               </children>
+            </VBox>
+         </children></HBox>
    </children>
 </Pane>

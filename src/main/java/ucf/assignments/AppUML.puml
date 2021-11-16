@@ -1,21 +1,44 @@
 @startuml
 class Controller
 {
-    private Label mainTitle;
-    private TextField inputTitle;
+    private Text errorMsg;
     private TextField inputDescription;
     private ChoiceBox inputStatus;
     private DatePicker inputDuedate;
-    ArrayList<todoList> list;
-
+    public TableView<todoList> myTable;
+    private TableColumn<todoList, String> descriptionCol;
+    private TableColumn<todoList, String> deadlineCol;
+    private TableColumn<todoList, String> statusCol;
+    public int ID = 0;
+    public ArrayList<todoList> list = new ArrayList<>();
+    public ObservableList<String> statusChoices;
+    ArrayList<todoList> sortedList = new ArrayList<>();
+    
     newSavetodo()
-    openViewlist()
-    editTodo()
-    deleteTodo()
-    loadList()
-    saveList()
-    openAddtodo()
+    checkDate(String date)
+    checkDescription(String desc)
+    addItem(todoList obj)
+    importList(ActionEvent actionEvent)
+    load(File file)
+    exportList(ActionEvent actionEvent)
+    save(File file)
     initialize()
+    updateStatus(todoList row,String newValue)
+    editDescription(TableColumn.CellEditEvent<todoList, String> todoListStringCellEditEvent)
+    updateDescription(todoList description,String newDescription)
+    editDeadline(TableColumn.CellEditEvent<todoList, String> todoListStringCellEditEvent)
+    updateDeadline(todoList dueDate,String newDueDate)
+    clearList(ActionEvent actionEvent)
+    clearAll()
+    removeItem(ActionEvent actionEvent)
+    remove(int counter)
+    showCompleted(ActionEvent actionEvent)
+    sortComplete()
+    showIncompleted(ActionEvent actionEvent)
+    sortIncomplete()
+    showAll(ActionEvent actionEvent)
+    showList(ArrayList<todoList> list)
+    
 }
 class App
 {
@@ -25,11 +48,22 @@ class App
 class todoList
 {
     public int ID;
-    public String title;
-    public String description;
-    public String status;
-    public String dueDate;
+    public StringProperty description;
+    public StringProperty status;
+    public StringProperty dueDate;
+    
+    todoList(int ID2, String description2, String status2, String dueDate2)
+     
+    getID()
+    setID()
+    getDescription()
+    setDescription()
+    getStatus()
+    setStatus()
+    getDueDate()
+    setDueDate()
 }
-
+App -- Controller : > Uses
+Controller -- todoList : > Makes and Uses
 
 @enduml

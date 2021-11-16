@@ -1,0 +1,109 @@
+/*
+ *  UCF COP3330 Fall 2021 Assignment 4 Solution
+ *  Copyright 2021 Patrick Mac
+ */
+
+Class ControllerTest
+{
+    @test #1
+    function TestCase1()
+    {
+        This test creates a list that can store at least 100 unique todoList objects
+        and checks if the list is equal to size 101
+    }
+
+    @test #2
+    function TestCase2()
+    {
+        This tests if the description of the objects is between 1 and 256 characters in length
+    }
+
+    @test #3
+    function TestCase3()
+    {
+        This test makes sure that the due date is in the correct format
+    }
+
+    @test #4
+    function TestCase4()
+    {
+        This test makes sure that the todo item is added to the list
+    }
+
+    @test #5
+    function TestCase5()
+    {
+        This test adds an item to the list and removes it
+        it then checks whether or not the item is removed
+    }
+    
+    @test #6
+    function TestCase6()
+    {
+        This test adds objects to the list and then clears the list
+        it then checks if the list is empty
+    }
+
+    @test #7
+    function TestCase7()
+    {
+        This test creates an object with attributes and updates the description and
+        checks to make sure the changes occured
+    }
+
+    @test #8
+    function TestCase8()
+    {
+        This test creates an object with attributes and updates the due date and
+        checks to make sure the changes occured
+    }
+
+    @test #9
+    function TestCase9()
+    {
+        This test creates an object with attributes and updates the status
+        it then checks whether or not the status has changed
+    }
+
+    @test #10
+    function TestCase10()
+    {
+        This test adds 6 todo objects to a list each having its own attributes
+        it then calls the showList method to show all objects in the list
+    }
+
+    @test #11
+    function TestCase11()
+    {
+        This test adds 6 todo objects to a list each having its own attributes and sorts
+        then by their status (incomplete)
+        then a check is done to make sure that all the values in the new list are incomplete
+    }
+
+    @test #12
+    function TestCase12()
+    {
+        This test adds 6 todo objects to a list each having its own attributes and sorts
+        then by their status (complete)
+        then a check is done to make sure that all the values in the new list are complete
+    }
+
+    @test #13
+    function TestCase13()
+    {
+        This test adds 6 todo objects to a list each having its own attributes
+        it then creates a text file named JunitListExportTest.txt
+        and calls the save() method to save the file
+        a check is then done to make sure the file exists
+    }
+
+
+    @test #14
+    function TestCase14()
+    {
+        This test adds 6 todo objects to a list each having its own attributes
+        it then creates a text file named JunitListImportTest.txt
+        and calls the save() method to save the file
+        it then calls the load() method to import the file
+        a check is then done to make sure that each imported todo item has been added to the list
+    }
